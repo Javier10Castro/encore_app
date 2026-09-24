@@ -15,7 +15,7 @@ from tkinter import ttk, messagebox
 
 import database as db
 import theme
-from ui.widgets import AppHeader, section_card, make_numeric_entry, BlankLockedOptionMenu
+from ui.widgets import AppHeader, section_card, make_numeric_entry, BlankLockedOptionMenu, maximize_window
 
 
 class EmployeesWindow(ctk.CTkToplevel):
@@ -28,10 +28,9 @@ class EmployeesWindow(ctk.CTkToplevel):
         self.selected_row_number = None   # empleado seleccionado en la tabla (editar)
 
         self.title("Encore Group - Agregar Empleados")
-        self.geometry("900x720")
-        self.minsize(820, 640)
         self.configure(fg_color=theme.BG_LIGHT)
         self.protocol("WM_DELETE_WINDOW", self._logout)
+        maximize_window(self)
 
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)

@@ -17,7 +17,7 @@ from tkinter import messagebox
 
 import database as db
 import theme
-from ui.widgets import AppHeader, section_card, make_numeric_entry, BlankLockedOptionMenu
+from ui.widgets import AppHeader, section_card, make_numeric_entry, BlankLockedOptionMenu, maximize_window
 
 
 class CaptureWindow(ctk.CTkToplevel):
@@ -29,10 +29,9 @@ class CaptureWindow(ctk.CTkToplevel):
         self.validated_employee = None  # dict con numero/nombre/turno una vez validado
 
         self.title("Encore Group - Capturar Datos")
-        self.geometry("760x680")
-        self.minsize(680, 620)
         self.configure(fg_color=theme.BG_LIGHT)
         self.protocol("WM_DELETE_WINDOW", self._logout)
+        maximize_window(self)
 
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)

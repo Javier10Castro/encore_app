@@ -19,6 +19,13 @@ ASSETS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file
 BLANK_OPTION = "-- Selecciona --"
 
 
+def maximize_window(window):
+    """Maximiza una ventana (full screen respetando la barra de tareas)
+    para que todas las pantallas tengan el mismo tamaño y no cambien."""
+    window.minsize(480, 360)
+    window.after(1, lambda: window.state("zoomed"))
+
+
 # --------------------------------------------------------------------- #
 # Fondo degradado
 # --------------------------------------------------------------------- #

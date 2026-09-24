@@ -12,7 +12,7 @@ from PIL import Image
 
 import database as db
 import theme
-from ui.widgets import GradientFrame
+from ui.widgets import GradientFrame, maximize_window
 
 
 class LoginWindow(ctk.CTkToplevel):
@@ -21,10 +21,9 @@ class LoginWindow(ctk.CTkToplevel):
         self.on_login_success = on_login_success
 
         self.title("Encore Group - Iniciar Sesión")
-        self.geometry("980x620")
-        self.minsize(820, 560)
         self.configure(fg_color=theme.BG)
         self.protocol("WM_DELETE_WINDOW", self.master.destroy)
+        maximize_window(self)
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)

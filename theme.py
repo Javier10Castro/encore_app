@@ -10,14 +10,14 @@ Toda la paleta vive aquí; las ventanas solo referencian constantes.
 import customtkinter as ctk
 
 # ---- Fondo y superficies ----------------------------------------------
-BG = "#0A0F1E"            # Fondo principal (marino profundo)
-BG_SOFT = "#0D1427"       # Fondo alterno / zonas secundarias
-SURFACE = "#111A30"       # Tarjeta base
-SURFACE_2 = "#15203C"     # Tarjeta elevada / campos de entrada
-SURFACE_3 = "#1C2A4C"     # Elementos elevados (headers de tabla)
-BORDER = "#233153"        # Borde estándar
-BORDER_SOFT = "#1B2747"   # Borde suave
-HOVER = "#202E52"         # Hover genérico
+BG = "#161D33"            # Fondo principal (marino azulado, evita el "negro")
+BG_SOFT = "#1A2338"       # Fondo alterno / zonas secundarias
+SURFACE = "#1E2942"       # Tarjeta base
+SURFACE_2 = "#243259"     # Tarjeta elevada / campos de entrada
+SURFACE_3 = "#2C3C66"     # Elementos elevados (headers de tabla)
+BORDER = "#33436F"        # Borde estándar
+BORDER_SOFT = "#26345A"   # Borde suave
+HOVER = "#2C3C63"         # Hover genérico
 
 # ---- Acentos -----------------------------------------------------------
 PRIMARY = "#6366F1"       # Indigo (marca / acción principal)

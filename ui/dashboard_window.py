@@ -14,7 +14,7 @@ matplotlib.rcParams["font.family"] = "Segoe UI"
 
 import database as db
 import theme
-from ui.widgets import AppHeader, StatCard, section_card
+from ui.widgets import AppHeader, StatCard, section_card, maximize_window
 
 
 class DashboardWindow(ctk.CTkToplevel):
@@ -30,10 +30,9 @@ class DashboardWindow(ctk.CTkToplevel):
         self.on_open_users = on_open_users
 
         self.title("Encore Group - Dashboard")
-        self.geometry("1240x800")
-        self.minsize(1020, 660)
         self.configure(fg_color=theme.BG)
         self.protocol("WM_DELETE_WINDOW", self._logout)
+        maximize_window(self)
 
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)

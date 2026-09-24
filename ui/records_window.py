@@ -9,7 +9,7 @@ from tkinter import ttk, messagebox
 
 import database as db
 import theme
-from ui.widgets import AppHeader, section_card
+from ui.widgets import AppHeader, section_card, maximize_window
 
 
 class RecordsWindow(ctk.CTkToplevel):
@@ -20,10 +20,9 @@ class RecordsWindow(ctk.CTkToplevel):
         self.on_logout = on_logout
 
         self.title("Encore Group - Registros")
-        self.geometry("980x680")
-        self.minsize(860, 600)
         self.configure(fg_color=theme.BG_LIGHT)
         self.protocol("WM_DELETE_WINDOW", self._logout)
+        maximize_window(self)
 
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
