@@ -75,9 +75,14 @@ encore_app/
 
 ## 5. Personalización visual
 
-Los colores están centralizados en `theme.py` (tomados del logo Encore / A
-Boeing Company: azul marino, azul acero y gris corporativo). Puedes
-ajustarlos ahí sin tocar el resto del código.
+El diseño usa un tema **modern fintech / DeFi dashboard**: fondo oscuro,
+tarjetas elevadas, acentos vibrantes (indigo, cian, violeta) y gráficas
+limpias (donut, barras y área degradada).
+
+Todos los colores y estilos están centralizados en `theme.py`. Puedes
+ajustarlos ahí sin tocar el resto del código: paleta, tipografías,
+colores de las gráficas (`CHART_COLORS`, `TURNO_COLORS`) y los helpers
+de estilo globales (`style_primary_button`, `style_treeview`, etc.).
 
 Las ventanas usan `grid`/`CTkScrollableFrame` para adaptarse al tamaño de
 pantalla; todas tienen un tamaño mínimo (`minsize`) para mantener la

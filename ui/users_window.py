@@ -48,22 +48,25 @@ class UsersWindow(ctk.CTkToplevel):
         card.grid_columnconfigure(1, weight=1)
 
         ctk.CTkLabel(card, text="Crear nuevo usuario", font=theme.SUBTITLE_FONT,
-                     text_color=theme.NAVY).grid(row=0, column=0, columnspan=2,
+                     text_color="#FFFFFF").grid(row=0, column=0, columnspan=2,
                                                   padx=18, pady=(16, 10), sticky="w")
 
         ctk.CTkLabel(card, text="Usuario", font=theme.SMALL_FONT,
-                     text_color=theme.GRAY).grid(row=1, column=0, padx=18, sticky="w")
+                     text_color=theme.TEXT_MUTED).grid(row=1, column=0, padx=18, sticky="w")
         self.username_entry = ctk.CTkEntry(card, height=38)
+        theme.style_entry(self.username_entry)
         self.username_entry.grid(row=2, column=0, padx=18, pady=(4, 12), sticky="ew")
 
         ctk.CTkLabel(card, text="Contraseña", font=theme.SMALL_FONT,
-                     text_color=theme.GRAY).grid(row=1, column=1, padx=18, sticky="w")
+                     text_color=theme.TEXT_MUTED).grid(row=1, column=1, padx=18, sticky="w")
         self.password_entry = ctk.CTkEntry(card, height=38, show="•")
+        theme.style_entry(self.password_entry)
         self.password_entry.grid(row=2, column=1, padx=18, pady=(4, 12), sticky="ew")
 
         self.is_admin_var = ctk.BooleanVar(value=False)
         admin_check = ctk.CTkCheckBox(card, text="Es administrador", variable=self.is_admin_var,
-                                       fg_color=theme.NAVY, hover_color=theme.NAVY_DARK)
+                                       fg_color=theme.PRIMARY, hover_color=theme.PRIMARY_HOVER,
+                                       text_color=theme.TEXT)
         admin_check.grid(row=3, column=0, padx=18, pady=(0, 6), sticky="w")
 
         self.status_label = ctk.CTkLabel(card, text="", font=theme.SMALL_FONT)
@@ -101,13 +104,9 @@ class UsersWindow(ctk.CTkToplevel):
     # ------------------------------------------------------------------ #
     def _build_table(self, parent):
         style = ttk.Style()
-        style.theme_use("clam")
-        style.configure("Treeview", rowheight=28, font=(theme.FONT_FAMILY, 11),
-                         background=theme.WHITE, fieldbackground=theme.WHITE)
-        style.configure("Treeview.Heading", font=(theme.FONT_FAMILY, 11, "bold"),
-                         background=theme.NAVY, foreground=theme.WHITE)
+        theme.style_treeview(style)
 
-        table_wrap = ctk.CTkFrame(parent, fg_color=theme.WHITE)
+        table_wrap = ctk.CTkFrame(parent, fg_color=theme.SURFACE)
         table_wrap.grid(row=1, column=0, sticky="nsew")
         table_wrap.grid_rowconfigure(0, weight=1)
         table_wrap.grid_columnconfigure(0, weight=1)

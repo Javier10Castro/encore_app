@@ -48,24 +48,28 @@ class RecordsWindow(ctk.CTkToplevel):
             card.grid_columnconfigure(i, weight=1)
 
         ctk.CTkLabel(card, text="Desde", font=theme.SMALL_FONT,
-                     text_color=theme.GRAY).grid(row=0, column=0, padx=10, pady=(12, 0), sticky="w")
+                     text_color=theme.TEXT_MUTED).grid(row=0, column=0, padx=10, pady=(12, 0), sticky="w")
         self.desde_entry = ctk.CTkEntry(card, placeholder_text="AAAA-MM-DD")
+        theme.style_entry(self.desde_entry)
         self.desde_entry.grid(row=1, column=0, padx=10, pady=(0, 12), sticky="ew")
 
         ctk.CTkLabel(card, text="Hasta", font=theme.SMALL_FONT,
-                     text_color=theme.GRAY).grid(row=0, column=1, padx=10, pady=(12, 0), sticky="w")
+                     text_color=theme.TEXT_MUTED).grid(row=0, column=1, padx=10, pady=(12, 0), sticky="w")
         self.hasta_entry = ctk.CTkEntry(card, placeholder_text="AAAA-MM-DD")
+        theme.style_entry(self.hasta_entry)
         self.hasta_entry.grid(row=1, column=1, padx=10, pady=(0, 12), sticky="ew")
 
         ctk.CTkLabel(card, text="Turno", font=theme.SMALL_FONT,
-                     text_color=theme.GRAY).grid(row=0, column=2, padx=10, pady=(12, 0), sticky="w")
+                     text_color=theme.TEXT_MUTED).grid(row=0, column=2, padx=10, pady=(12, 0), sticky="w")
         self.turno_menu = ctk.CTkOptionMenu(card, values=["Todos", "A", "B", "C"])
+        theme.style_option_menu(self.turno_menu)
         self.turno_menu.set("Todos")
         self.turno_menu.grid(row=1, column=2, padx=10, pady=(0, 12), sticky="ew")
 
         ctk.CTkLabel(card, text="Material", font=theme.SMALL_FONT,
-                     text_color=theme.GRAY).grid(row=0, column=3, padx=10, pady=(12, 0), sticky="w")
+                     text_color=theme.TEXT_MUTED).grid(row=0, column=3, padx=10, pady=(12, 0), sticky="w")
         self.material_menu = ctk.CTkOptionMenu(card, values=["Todos"] + db.list_material_names())
+        theme.style_option_menu(self.material_menu)
         self.material_menu.set("Todos")
         self.material_menu.grid(row=1, column=3, padx=10, pady=(0, 12), sticky="ew")
 
@@ -92,7 +96,7 @@ class RecordsWindow(ctk.CTkToplevel):
 
         refresh_btn = ctk.CTkButton(toolbar, text="⟳ Actualizar", width=120,
                                      command=self._reload_table)
-        theme.style_secondary_button(refresh_btn)
+        theme.style_ghost_button(refresh_btn)
         refresh_btn.grid(row=0, column=1, sticky="e", padx=(0, 10))
 
         delete_btn = ctk.CTkButton(toolbar, text="Eliminar seleccionado", width=180,
@@ -100,19 +104,14 @@ class RecordsWindow(ctk.CTkToplevel):
         theme.style_danger_button(delete_btn)
         delete_btn.grid(row=0, column=2, sticky="e")
 
-        table_wrap = ctk.CTkFrame(parent, fg_color=theme.WHITE)
+        table_wrap = ctk.CTkFrame(parent, fg_color=theme.SURFACE)
         table_wrap.grid(row=2, column=0, sticky="nsew", pady=(10, 0))
         parent.grid_rowconfigure(2, weight=1)
         table_wrap.grid_rowconfigure(0, weight=1)
         table_wrap.grid_columnconfigure(0, weight=1)
 
         style = ttk.Style()
-        style.theme_use("clam")
-        style.configure("Treeview", rowheight=28, font=(theme.FONT_FAMILY, 11),
-                         background=theme.WHITE, fieldbackground=theme.WHITE)
-        style.configure("Treeview.Heading", font=(theme.FONT_FAMILY, 11, "bold"),
-                         background=theme.NAVY, foreground=theme.WHITE)
-        style.map("Treeview", background=[("selected", theme.STEEL_BLUE)])
+        theme.style_treeview(style)
 
         columns = ("id", "numero", "nombre", "turno", "material", "cantidad", "fecha")
         self.tree = ttk.Treeview(table_wrap, columns=columns, show="headings", height=16)

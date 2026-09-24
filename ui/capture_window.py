@@ -49,7 +49,7 @@ class CaptureWindow(ctk.CTkToplevel):
         card.grid_columnconfigure(0, weight=1)
 
         ctk.CTkLabel(card, text="Capturar Datos", font=theme.TITLE_FONT,
-                     text_color=theme.NAVY).grid(row=0, column=0, padx=24, pady=(24, 4), sticky="w")
+                     text_color="#FFFFFF").grid(row=0, column=0, padx=24, pady=(24, 4), sticky="w")
         ctk.CTkLabel(card, text="Paso 1: valida el número de empleado para continuar.",
                      font=theme.LABEL_FONT, text_color=theme.GRAY).grid(
             row=1, column=0, padx=24, pady=(0, 16), sticky="w")
@@ -79,7 +79,7 @@ class CaptureWindow(ctk.CTkToplevel):
         self.emp_status_label.grid(row=2, column=0, sticky="w", pady=(6, 0))
 
         self.emp_info_label = ctk.CTkLabel(step1, text="", font=theme.LABEL_FONT,
-                                            text_color=theme.NAVY)
+                                            text_color=theme.PRIMARY_HOVER)
         self.emp_info_label.grid(row=3, column=0, sticky="w", pady=(4, 0))
 
         # ---- Separador ----------------------------------------------------

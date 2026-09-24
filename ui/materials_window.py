@@ -33,10 +33,15 @@ class MaterialsWindow(ctk.CTkToplevel):
         AppHeader(self, "Agregar Materiales", user, on_back=self._back,
                   on_logout=self._logout).grid(row=0, column=0, sticky="ew")
 
-        self.tabs = ctk.CTkTabview(self, fg_color=theme.WHITE, segmented_button_fg_color=theme.NAVY,
-                                    segmented_button_selected_color=theme.NAVY_DARK,
-                                    segmented_button_unselected_color=theme.GRAY_LIGHT,
-                                    segmented_button_selected_hover_color=theme.NAVY_DARK)
+        self.tabs = ctk.CTkTabview(
+            self, fg_color=theme.SURFACE, corner_radius=16,
+            segmented_button_fg_color=theme.SURFACE_2,
+            segmented_button_selected_color=theme.PRIMARY,
+            segmented_button_selected_hover_color=theme.PRIMARY_HOVER,
+            segmented_button_unselected_color=theme.SURFACE_2,
+            segmented_button_unselected_hover_color=theme.HOVER,
+            text_color=theme.TEXT_MUTED,
+        )
         self.tabs.grid(row=1, column=0, sticky="nsew", padx=24, pady=20)
         self.tabs.add("Agregar")
         self.tabs.add("Ver / Editar")
@@ -54,7 +59,7 @@ class MaterialsWindow(ctk.CTkToplevel):
         card.grid_columnconfigure(0, weight=1)
 
         ctk.CTkLabel(card, text="Nuevo material", font=theme.TITLE_FONT,
-                     text_color=theme.NAVY).grid(row=0, column=0, padx=24, pady=(24, 4), sticky="w")
+                     text_color="#FFFFFF").grid(row=0, column=0, padx=24, pady=(24, 4), sticky="w")
         ctk.CTkLabel(card, text="El nombre del material no puede repetirse.",
                      font=theme.LABEL_FONT, text_color=theme.GRAY).grid(
             row=1, column=0, padx=24, pady=(0, 16), sticky="w")
@@ -63,6 +68,7 @@ class MaterialsWindow(ctk.CTkToplevel):
                      text_color=theme.GRAY).grid(row=2, column=0, padx=24, sticky="w")
         self.name_entry = ctk.CTkEntry(card, height=42, font=theme.ENTRY_FONT,
                                         placeholder_text="Ej. Café en grano - Chiapas")
+        theme.style_entry(self.name_entry)
         self.name_entry.grid(row=3, column=0, padx=24, pady=(4, 4), sticky="ew")
         self.name_entry.bind("<KeyRelease>", lambda e: self._clear_status())
 
@@ -130,19 +136,14 @@ class MaterialsWindow(ctk.CTkToplevel):
         parent.grid_rowconfigure(1, weight=1)
 
         style = ttk.Style()
-        style.theme_use("clam")
-        style.configure("Treeview", rowheight=28, font=(theme.FONT_FAMILY, 11),
-                         background=theme.WHITE, fieldbackground=theme.WHITE)
-        style.configure("Treeview.Heading", font=(theme.FONT_FAMILY, 11, "bold"),
-                         background=theme.NAVY, foreground=theme.WHITE)
-        style.map("Treeview", background=[("selected", theme.STEEL_BLUE)])
+        theme.style_treeview(style)
 
         toolbar = ctk.CTkFrame(parent, fg_color="transparent")
         toolbar.grid(row=0, column=0, sticky="ew", padx=4, pady=(4, 10))
 
         refresh_btn = ctk.CTkButton(toolbar, text="⟳ Actualizar", width=120,
                                      command=self._reload_table)
-        theme.style_secondary_button(refresh_btn)
+        theme.style_ghost_button(refresh_btn)
         refresh_btn.pack(side="left")
 
         edit_btn = ctk.CTkButton(toolbar, text="Editar seleccionado", width=170,
@@ -155,7 +156,7 @@ class MaterialsWindow(ctk.CTkToplevel):
         theme.style_danger_button(delete_btn)
         delete_btn.pack(side="left")
 
-        table_frame = ctk.CTkFrame(parent, fg_color=theme.WHITE)
+        table_frame = ctk.CTkFrame(parent, fg_color=theme.SURFACE)
         table_frame.grid(row=1, column=0, sticky="nsew", padx=4)
         table_frame.grid_rowconfigure(0, weight=1)
         table_frame.grid_columnconfigure(0, weight=1)
@@ -197,15 +198,16 @@ class MaterialsWindow(ctk.CTkToplevel):
         dialog = ctk.CTkToplevel(self)
         dialog.title("Editar material")
         dialog.geometry("380x240")
-        dialog.configure(fg_color=theme.BG_LIGHT)
+        dialog.configure(fg_color=theme.BG)
         dialog.grab_set()
 
         ctk.CTkLabel(dialog, text="Editar material", font=theme.SUBTITLE_FONT,
-                     text_color=theme.NAVY).pack(pady=(20, 14))
+                     text_color="#FFFFFF").pack(pady=(20, 14))
 
         ctk.CTkLabel(dialog, text="Nombre", font=theme.SMALL_FONT,
-                     text_color=theme.GRAY).pack(anchor="w", padx=30)
+                     text_color=theme.TEXT_MUTED).pack(anchor="w", padx=30)
         name_entry = ctk.CTkEntry(dialog, height=38)
+        theme.style_entry(name_entry)
         name_entry.insert(0, material["nombre"])
         name_entry.pack(fill="x", padx=30, pady=(4, 14))
 
